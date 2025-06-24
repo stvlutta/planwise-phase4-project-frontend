@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     if (storedToken) {
       setToken(storedToken);
       // Optionally fetch user info here
-      setUser({})
+      setUser({});
     }
     setLoading(false);
   }, []);
@@ -128,4 +128,4 @@ export const useAuth = () => {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-};
+}

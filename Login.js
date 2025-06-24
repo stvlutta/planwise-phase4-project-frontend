@@ -13,10 +13,17 @@ const LoginSchema = Yup.object().shape({
     .required('Password is required')
 });
 
+/**
+ * Login component allows users to sign in to their account.
+ * @returns {JSX.Element}
+ */
 function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (values, { setFieldError }) => {
     setIsSubmitting(true);
@@ -49,6 +56,8 @@ function Login() {
                 id="username"
                 name="username"
                 placeholder="Enter your username or email"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
               />
               <ErrorMessage name="username" component="div" className="error" />
             </div>
@@ -56,11 +65,20 @@ function Login() {
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <Field
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
               />
+              <label style={{ marginLeft: '0.5rem' }}>
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                /> Show Password
+              </label>
               <ErrorMessage name="password" component="div" className="error" />
             </div>
 

@@ -1,4 +1,4 @@
-mport React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -105,7 +105,7 @@ function Signup() {
               {isSubmitting ? 'Creating Account...' : 'Sign Up'}
             </button>
           </Form>
-        </Formik>
+        </Formik
 
         <div className="auth-footer">
           <p>

@@ -12,7 +12,7 @@ import ProjectList from './ProjectList';
 import TaskForm from './TaskForm';
 import ProjectForm from './ProjectForm';
 
-function ooter() {
+function Footer() {
   return (
     <footer style={{ textAlign: 'center', padding: '1rem', background: '#f5f5f5', marginTop: '2rem' }}>
       © {new Date().getFullYear()} Planwise. All rights reserved.

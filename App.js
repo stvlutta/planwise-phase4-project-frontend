@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from '../context/AuthContext';
 import { ThemeProvider } from '../context/ThemeContext';
@@ -12,7 +12,7 @@ import ProjectList from './ProjectList';
 import TaskForm from './TaskForm';
 import ProjectForm from './ProjectForm';
 
-function Footer() {
+unction Footer() {
   return (
     <footer style={{ textAlign: 'center', padding: '1rem', background: '#f5f5f5', marginTop: '2rem' }}>
       © {new Date().getFullYear()} Planwise. All rights reserved.

@@ -1,4 +1,4 @@
-mport React from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -23,4 +23,4 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
-export default ProtectedRoute;
+export default ProtectedRoute

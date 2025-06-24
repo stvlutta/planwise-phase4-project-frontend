@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from '../context/AuthContext';
 import { ThemeProvider } from '../context/ThemeContext';
@@ -12,13 +12,40 @@ import ProjectList from './ProjectList';
 import TaskForm from './TaskForm';
 import ProjectForm from './ProjectForm';
 
+function Footer() {
+  return (
+    <footer style={{ textAlign: 'center', padding: '1rem', background: '#f5f5f5', marginTop: '2rem' }}>
+      © {new Date().getFullYear()} Planwise. All rights reserved.
+    </footer>
+  );
+}
+
 function AppContent() {
   const { isAuthenticated, loading } = useAuth();
+
+  useEffect(() => {
+    document.title = 'Planwise';
+  }, []);
 
   if (loading) {
     return (
       <div className="loading-container">
-        <div className="loading">Loading...</div>
+        <div className="spinner"></div>
+        <style>{`
+          .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+          }
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
       </div>
     );
   }
@@ -79,15 +106,38 @@ function AppContent() {
           <Route path="*" element={<Navigate to={isAuthenticated ? "/" : "/login"} />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
+}
+
+// ErrorBoundary component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+  componentDidCatch(error, errorInfo) {
+    // You can log error info here
+  }
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
 }
 
 function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <AppContent />
+        <ErrorBoundary>
+          <AppContent />
+        </ErrorBoundary>
       </AuthProvider>
     </ThemeProvider>
   );

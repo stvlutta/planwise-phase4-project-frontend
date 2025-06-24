@@ -4,7 +4,7 @@ import { AuthProvider, useAuth } from '../context/AuthContext';
 import { ThemeProvider } from '../context/ThemeContext';
 import ProtectedRoute from './ProtectedRoute';
 import Navbar from './Navbar';
-import Logi from './Login';
+import Login from './Login';
 import Signup from './Signup';
 import Dashboard from './Dashboard';
 import TaskList from './TaskList';
@@ -12,7 +12,7 @@ import ProjectList from './ProjectList';
 import TaskForm from './TaskForm';
 import ProjectForm from './ProjectForm';
 
-function Footer() {
+function ooter() {
   return (
     <footer style={{ textAlign: 'center', padding: '1rem', background: '#f5f5f5', marginTop: '2rem' }}>
       © {new Date().getFullYear()} Planwise. All rights reserved.

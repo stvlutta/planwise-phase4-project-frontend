@@ -39,7 +39,7 @@ function Signup() {
     setIsSubmitting(false);
   };
 
-  return 
+  return (
     <div className="auth-container">
       <div className="auth-card">
         <h1>Join PlanWise</h1>
@@ -117,4 +117,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signup

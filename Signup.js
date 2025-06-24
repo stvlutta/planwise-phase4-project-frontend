@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-impor { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -39,7 +39,7 @@ function Signup() {
     setIsSubmitting(false);
   };
 
-  return (
+  return 
     <div className="auth-container">
       <div className="auth-card">
         <h1>Join PlanWise</h1>

@@ -105,7 +105,7 @@ function Signup() {
               {isSubmitting ? 'Creating Account...' : 'Sign Up'}
             </button>
           </Form>
-        </Formik
+        </Formik>
 
         <div className="auth-footer">
           <p>

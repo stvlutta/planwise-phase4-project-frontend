@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from '../context/AuthContext';
-import { ThemeProvider } from '../context/ThemeContext';
 import ProtectedRoute from './ProtectedRoute';
 import Navbar from './Navbar';
 import Login from './Login';
@@ -133,13 +132,11 @@ class ErrorBoundary extends React.Component {
 
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <ErrorBoundary>
-          <AppContent />
-        </ErrorBoundary>
-      </AuthProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ErrorBoundary>
+        <AppContent />
+      </ErrorBoundary>
+    </AuthProvider>
   );
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import ThemeToggle from './ThemeToggle';
 
 function Navbar() {
   const location = useLocation();
@@ -36,7 +35,6 @@ function Navbar() {
           </Link>
         </nav>
         <div className="navbar-user">
-          <ThemeToggle />
           <span className="user-info">
             Welcome, {user?.username}!
           </span>

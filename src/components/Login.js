@@ -96,11 +96,11 @@ function Login() {
 
         <div className="demo-credentials">
           <h4>Demo Credentials:</h4>
+          <p><strong>Username:</strong> steve | <strong>Password:</strong> password123</p>
           <p><strong>Username:</strong> luke | <strong>Password:</strong> password123</p>
           <p><strong>Username:</strong> mudalib | <strong>Password:</strong> password123</p>
           <p><strong>Username:</strong> claire | <strong>Password:</strong> password123</p>
           <p><strong>Username:</strong> dylan | <strong>Password:</strong> password123</p>
-          <p><strong>Username:</strong> steve | <strong>Password:</strong> password123</p>
         </div>
       </div>
     </div>

@@ -21,8 +21,6 @@ function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (values, { setFieldError }) => {
@@ -56,8 +54,6 @@ function Login() {
                 id="username"
                 name="username"
                 placeholder="Enter your username or email"
-                value={username}
-                onChange={e => setUsername(e.target.value)}
               />
               <ErrorMessage name="username" component="div" className="error" />
             </div>
@@ -69,8 +65,6 @@ function Login() {
                 id="password"
                 name="password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
               />
               <label style={{ marginLeft: '0.5rem' }}>
                 <input

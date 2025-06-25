@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://planwise-backend-kkns.onrender.com';
+
 function TaskList() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ function TaskList() {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('/tasks', {
+      const response = await fetch(`${API_URL}/tasks`, {
         headers: getAuthHeaders()
       });
       const data = await response.json();
@@ -33,7 +35,7 @@ function TaskList() {
   const deleteTask = async (id) => {
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
-        await fetch(`/tasks/${id}`, { 
+        await fetch(`${API_URL}/tasks/${id}`, { 
           method: 'DELETE',
           headers: getAuthHeaders()
         });
@@ -46,7 +48,7 @@ function TaskList() {
 
   const updateTaskStatus = async (id, newStatus) => {
     try {
-      const response = await fetch(`/tasks/${id}`, {
+      const response = await fetch(`${API_URL}/tasks/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

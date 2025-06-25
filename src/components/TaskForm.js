@@ -4,6 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useAuth } from '../context/AuthContext';
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://planwise-backend-kkns.onrender.com';
+
 const TaskSchema = Yup.object().shape({
   title: Yup.string()
     .min(3, 'Title must be at least 3 characters')
@@ -66,7 +68,7 @@ function TaskForm() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('/users', {
+      const response = await fetch(`${API_URL}/users`, {
         headers: getAuthHeaders()
       });
       const data = await response.json();
@@ -81,7 +83,7 @@ function TaskForm() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('/projects', {
+      const response = await fetch(`${API_URL}/projects`, {
         headers: getAuthHeaders()
       });
       const data = await response.json();
@@ -93,7 +95,7 @@ function TaskForm() {
 
   const fetchTask = async () => {
     try {
-      const response = await fetch(`/tasks/${id}`, {
+      const response = await fetch(`${API_URL}/tasks/${id}`, {
         headers: getAuthHeaders()
       });
       const task = await response.json();
@@ -119,7 +121,7 @@ function TaskForm() {
         due_date: values.due_date || null
       };
 
-      const url = isEdit ? `/tasks/${id}` : '/tasks';
+      const url = isEdit ? `${API_URL}/tasks/${id}` : `${API_URL}/tasks`;
       const method = isEdit ? 'PATCH' : 'POST';
       
       const response = await fetch(url, {

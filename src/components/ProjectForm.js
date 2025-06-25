@@ -4,6 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import CollaboratorList from './CollaboratorList';
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://planwise-backend-kkns.onrender.com';
+
 const ProjectSchema = Yup.object().shape({
   title: Yup.string()
     .min(3, 'Title must be at least 3 characters')
@@ -36,7 +38,7 @@ function ProjectForm() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('/users', {
+      const response = await fetch(`${API_URL}/users`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -53,7 +55,7 @@ function ProjectForm() {
 
   const fetchProject = async () => {
     try {
-      const response = await fetch(`/projects/${id}`, {
+      const response = await fetch(`${API_URL}/projects/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -71,7 +73,7 @@ function ProjectForm() {
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const url = isEdit ? `/projects/${id}` : '/projects';
+      const url = isEdit ? `${API_URL}/projects/${id}` : `${API_URL}/projects`;
       const method = isEdit ? 'PATCH' : 'POST';
       
       const response = await fetch(url, {

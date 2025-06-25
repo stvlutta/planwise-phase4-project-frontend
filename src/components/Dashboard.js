@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://planwise-backend-kkns.onrender.com';
+
 function Dashboard() {
   const [stats, setStats] = useState({
     totalTasks: 0,
@@ -20,8 +22,8 @@ function Dashboard() {
   const fetchDashboardData = async () => {
     try {
       const [tasksResponse, projectsResponse] = await Promise.all([
-        fetch('/tasks', { headers: getAuthHeaders() }),
-        fetch('/projects', { headers: getAuthHeaders() })
+        fetch(`${API_URL}/tasks`, { headers: getAuthHeaders() }),
+        fetch(`${API_URL}/projects`, { headers: getAuthHeaders() })
       ]);
 
       const tasks = await tasksResponse.json();

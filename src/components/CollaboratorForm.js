@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://planwise-backend-kkns.onrender.com';
+
 const CollaboratorSchema = Yup.object().shape({
   user_id: Yup.number()
     .required('Please select a user'),
@@ -27,7 +29,7 @@ function CollaboratorForm({
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('/users', {
+      const response = await fetch(`${API_URL}/users`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -43,7 +45,7 @@ function CollaboratorForm({
 
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     try {
-      const url = isEdit ? `/project-collaborators/${collaborator.id}` : '/project-collaborators';
+      const url = isEdit ? `${API_URL}/project-collaborators/${collaborator.id}` : `${API_URL}/project-collaborators`;
       const method = isEdit ? 'PATCH' : 'POST';
       
       const response = await fetch(url, {

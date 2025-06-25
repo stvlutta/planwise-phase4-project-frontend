@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CollaboratorForm from './CollaboratorForm';
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://planwise-backend-kkns.onrender.com';
+
 function CollaboratorList({ projectId, onCollaboratorChange }) {
   const [collaborators, setCollaborators] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ function CollaboratorList({ projectId, onCollaboratorChange }) {
 
   const fetchCollaborators = async () => {
     try {
-      const response = await fetch('/project-collaborators', {
+      const response = await fetch(`${API_URL}/project-collaborators`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -35,7 +37,7 @@ function CollaboratorList({ projectId, onCollaboratorChange }) {
   const deleteCollaborator = async (id) => {
     if (window.confirm('Are you sure you want to remove this collaborator?')) {
       try {
-        await fetch(`/project-collaborators/${id}`, {
+        await fetch(`${API_URL}/project-collaborators/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -65,7 +67,7 @@ function CollaboratorList({ projectId, onCollaboratorChange }) {
 
   const updateCollaboratorRole = async (collaboratorId, newRole) => {
     try {
-      const response = await fetch(`/project-collaborators/${collaboratorId}`, {
+      const response = await fetch(`${API_URL}/project-collaborators/${collaboratorId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

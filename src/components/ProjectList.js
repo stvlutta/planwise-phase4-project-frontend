@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CollaboratorList from './CollaboratorList';
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://planwise-backend-kkns.onrender.com';
+
 function ProjectList() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ function ProjectList() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('/projects', {
+      const response = await fetch(`${API_URL}/projects`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -30,7 +32,7 @@ function ProjectList() {
   const deleteProject = async (id) => {
     if (window.confirm('Are you sure you want to delete this project? This will also delete all tasks in this project.')) {
       try {
-        await fetch(`/projects/${id}`, { 
+        await fetch(`${API_URL}/projects/${id}`, { 
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
